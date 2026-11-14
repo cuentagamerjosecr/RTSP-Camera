@@ -25,9 +25,13 @@ jobs:
           unzip gradle-8.9-bin.zip
           echo "$PWD/gradle-8.9/bin" >> $GITHUB_PATH
 
-      - name: Install Android SDK Platform 37
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Platform 37 and Accept Licenses
         run: |
-          echo "y" | sudo ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager "platforms;android-37"
+          yes | sdkmanager --licenses
+          sdkmanager "platforms;android-37"
 
       - name: Build Debug APK with Gradle
         run: gradle assembleDebug
