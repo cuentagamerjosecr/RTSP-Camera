@@ -25,6 +25,10 @@ jobs:
           unzip gradle-8.9-bin.zip
           echo "$PWD/gradle-8.9/bin" >> $GITHUB_PATH
 
+      - name: Install Android SDK Platform 37
+        run: |
+          echo "y" | sudo ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager "platforms;android-37"
+
       - name: Build Debug APK with Gradle
         run: gradle assembleDebug
 
