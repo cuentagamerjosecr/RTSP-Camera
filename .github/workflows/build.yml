@@ -25,12 +25,6 @@ jobs:
           unzip gradle-8.9-bin.zip
           echo "$PWD/gradle-8.9/bin" >> $GITHUB_PATH
 
-      - name: Accept SDK Licenses and Install Platform 37
-        run: |
-          export ANDROID_HOME=/usr/local/lib/android/sdk
-          yes | ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --licenses || true
-          ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager "platforms;android-37"
-
       - name: Build Debug APK with Gradle
         run: gradle assembleDebug
 
